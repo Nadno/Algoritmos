@@ -1,6 +1,12 @@
 {
   "name": "algorithms",
   "packageManager": "yarn@3.2.4",
-  "dependencies": {},
+  "scripts": {
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "vitest": "^0.25.1"
+  },
   "devDependencies": {}
 }
