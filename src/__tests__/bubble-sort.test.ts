@@ -3,6 +3,11 @@ import { describe, expect, it } from "vitest";
 import { numbers, strings } from "../lists";
 import { bubbleSort } from "../bubble-sort";
 
+import {
+  compareAscSortedItems,
+  compareDescSortedItems,
+} from "../utils/compare-sorted-items";
+
 describe("Bubble sort algorithm", () => {
   const ascendingSortComparator = (a, b) => a - b;
 
@@ -45,5 +50,41 @@ describe("Bubble sort algorithm", () => {
     expect(bubbleSort([...randomNumbers], "desc")).toEqual(
       [...sortedRandomNumbers].reverse()
     );
+  });
+
+  it("should compare the items order", () => {
+    const randomNumbers = Array.from({ length: 500 }, () =>
+      Math.floor(Math.random() * 500)
+    );
+
+    expect(
+      bubbleSort([...randomNumbers], "desc").every(compareDescSortedItems)
+    ).toBe(true);
+
+    expect(
+      bubbleSort([...randomNumbers], "asc").every(compareAscSortedItems)
+    ).toBe(true);
+
+    expect(bubbleSort([...strings], "asc").every(compareAscSortedItems)).toBe(
+      true
+    );
+
+    expect(bubbleSort([...strings], "desc").every(compareDescSortedItems)).toBe(
+      true
+    );
+
+    expect(bubbleSort([...numbers], "asc").every(compareAscSortedItems)).toBe(
+      true
+    );
+
+    expect(bubbleSort([...numbers], "desc").every(compareDescSortedItems)).toBe(
+      true
+    );
+
+    expect(
+      bubbleSort([...staticUnsortedNumbers], "desc").every(
+        compareDescSortedItems
+      )
+    ).toBe(true);
   });
 });
