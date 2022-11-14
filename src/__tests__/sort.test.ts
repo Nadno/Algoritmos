@@ -43,6 +43,28 @@ describe("Bubble sort algorithm", () => {
       );
     });
 
+    it("should keep a sorted list, sorted", () => {
+      expect(sort([...sortedNumbers], "asc")).toEqual(sortedNumbers);
+
+      expect(sort([...sortedStrings], "asc")).toEqual(sortedStrings);
+
+      expect(sort([...staticSortedNumbers], "asc")).toEqual(
+        staticSortedNumbers
+      );
+
+      expect(sort([...sortedNumbers], "desc")).toEqual(
+        [...sortedNumbers].reverse()
+      );
+
+      expect(sort([...sortedStrings], "desc")).toEqual(
+        [...sortedStrings].reverse()
+      );
+
+      expect(sort([...staticSortedNumbers], "desc")).toEqual(
+        [...staticSortedNumbers].reverse()
+      );
+    });
+
     it("should sort a bunch of items in any order", () => {
       const randomNumbers = Array.from({ length: 500 }, () =>
           Math.floor(Math.random() * 500)
