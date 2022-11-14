@@ -106,5 +106,17 @@ describe("Bubble sort algorithm", () => {
         sort([...staticUnsortedNumbers], "desc").every(compareDescSortedItems)
       ).toBe(true);
     });
+
+    it("should sort an inverted sorted list", () => {
+      const randomNumbers = Array.from({ length: 500 }, () =>
+          Math.floor(Math.random() * 500)
+        ),
+        sortedRandomNumbers = [...randomNumbers].sort(ascendingSortComparator);
+
+      expect(sort([...sortedRandomNumbers].reverse())).toEqual(sortedRandomNumbers);
+      expect(sort([...sortedRandomNumbers], "desc")).toEqual(
+        [...sortedRandomNumbers].reverse()
+      );
+    });
   }
 });
