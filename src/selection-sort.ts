@@ -1,4 +1,4 @@
-export const bubbleSort = <T>(
+export const selectionSort = <T>(
   list: T[],
   order: "asc" | "desc" = "asc"
 ): T[] => {

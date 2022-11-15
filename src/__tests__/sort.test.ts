@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import { numbers, strings } from "../lists";
-import { bubbleSort } from "../bubble-sort";
+
+import { selectionSort } from "../selection-sort";
 
 import {
   compareAscSortedItems,
@@ -9,7 +10,7 @@ import {
 } from "../utils/compare-sorted-items";
 
 const sortMethods = {
-  bubbleSort,
+  selectionSort,
 };
 
 describe("Bubble sort algorithm", () => {
@@ -113,7 +114,9 @@ describe("Bubble sort algorithm", () => {
         ),
         sortedRandomNumbers = [...randomNumbers].sort(ascendingSortComparator);
 
-      expect(sort([...sortedRandomNumbers].reverse())).toEqual(sortedRandomNumbers);
+      expect(sort([...sortedRandomNumbers].reverse())).toEqual(
+        sortedRandomNumbers
+      );
       expect(sort([...sortedRandomNumbers], "desc")).toEqual(
         [...sortedRandomNumbers].reverse()
       );
