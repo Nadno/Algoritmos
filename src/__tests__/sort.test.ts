@@ -4,7 +4,7 @@ import { numbers, strings } from "../lists";
 
 import { selectionSort } from "../selection-sort";
 import { insertionSort } from "../insertion-sort";
-
+import { bubbleSort } from "../bubble-sort";
 
 import {
   compareAscSortedItems,
@@ -14,6 +14,7 @@ import {
 const sortMethods = {
   selectionSort,
   insertionSort,
+  bubbleSort,
 };
 
 describe("Bubble sort algorithm", () => {
