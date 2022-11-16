@@ -12,21 +12,20 @@ import {
 } from "../utils/compare-sorted-items";
 
 const sortMethods = {
-  selectionSort,
-  insertionSort,
-  bubbleSort,
+  Selection: selectionSort,
+  Insertion: insertionSort,
+  Bubble: bubbleSort,
 };
 
-describe("Bubble sort algorithm", () => {
-  const ascendingSortComparator = (a, b) => a - b;
+for (const sortMethod in sortMethods) {
+  describe(`${sortMethod} sort algorithm`, () => {
+    const ascendingSortComparator = (a, b) => a - b;
 
-  const sortedNumbers = [...numbers].sort(ascendingSortComparator),
-    sortedStrings = [...strings].sort();
+    const sortedNumbers = [...numbers].sort(ascendingSortComparator),
+      sortedStrings = [...strings].sort();
 
-  const staticUnsortedNumbers = [3, 9, 8, 5, 6, 4, 10, 1, 7, 2],
-    staticSortedNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  for (const sortMethod in sortMethods) {
+    const staticUnsortedNumbers = [3, 9, 8, 5, 6, 4, 10, 1, 7, 2],
+      staticSortedNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const sort = sortMethods[sortMethod];
 
     it("should sort items ascending", () => {
@@ -125,5 +124,5 @@ describe("Bubble sort algorithm", () => {
         [...sortedRandomNumbers].reverse()
       );
     });
-  }
-});
+  });
+}
