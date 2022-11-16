@@ -3,6 +3,7 @@
   "packageManager": "yarn@3.2.4",
   "scripts": {
     "test": "vitest run",
+    "test:sort": "vitest run sort.test.ts --reporter verbose",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
