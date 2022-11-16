@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 import { numbers, strings } from "../lists";
 
 import { selectionSort } from "../selection-sort";
+import { insertionSort } from "../insertion-sort";
+
 
 import {
   compareAscSortedItems,
@@ -11,6 +13,7 @@ import {
 
 const sortMethods = {
   selectionSort,
+  insertionSort,
 };
 
 describe("Bubble sort algorithm", () => {
