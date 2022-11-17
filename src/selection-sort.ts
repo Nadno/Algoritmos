@@ -11,20 +11,22 @@ export const selectionSort = <T>(
       : (current: T, next: T) => next > current; // DESCENDING
 
   for (let currentIndex = 0; currentIndex < listLength - 1; currentIndex++) {
-    let current = list[currentIndex];
+    let minItemIndex = currentIndex;
 
     for (
       let nextIndex = currentIndex + 1;
       nextIndex < listLength;
       nextIndex++
     ) {
-      const next = list[nextIndex];
-      if (compare(current, next)) {
-        list[currentIndex] = next;
-        list[nextIndex] = current;
-        current = next;
-      }
+      // Select the min or max item index
+      if (compare(list[minItemIndex], list[nextIndex]))
+        minItemIndex = nextIndex;
     }
+
+    // Switch the min item with the current item
+    const aux = list[minItemIndex];
+    list[minItemIndex] = list[currentIndex];
+    list[currentIndex] = aux;
   }
 
   return list;
