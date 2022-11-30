@@ -5,6 +5,7 @@ import { numbers, strings } from "../lists";
 import { selectionSort } from "../selection-sort";
 import { insertionSort } from "../insertion-sort";
 import { bubbleSort } from "../bubble-sort";
+import { mergeSort } from "../merge-sort";
 
 import {
   compareAscSortedItems,
@@ -15,6 +16,7 @@ const sortMethods = {
   Selection: selectionSort,
   Insertion: insertionSort,
   Bubble: bubbleSort,
+  Merge: mergeSort,
 };
 
 for (const sortMethod in sortMethods) {
