@@ -4,63 +4,32 @@ const switchArrayPositions = (array: any[], from: number, to: number): void => {
   array[to] = aux;
 };
 
-const equalTo = <T>(a: T, b: T) => a === b;
+const lessOrEqualThan = <T>(a: T, b: T) => a <= b;
 
-const lessThan = <T>(a: T, b: T) => a < b;
+const greaterOrEqualThan = <T>(a: T, b: T) => a >= b;
 
-const greaterThan = <T>(a: T, b: T) => a > b;
-
-/**
- * Sort an array item position.
- * @param array - an array
- * @param target - the target index to be sorted
- * @returns sortedTargeIndex
- */
-const sortTarget = <T>(
-  order: "asc" | "desc",
-  array: T[],
-  start: number,
-  end: number,
-  target: number
-): number => {
-  let count = 0;
-
-  const compare = order === "asc" ? lessThan : greaterThan;
-
-  for (let current = start; current <= end; current++) {
-    if (equalTo(current, target) || !compare(array[current], array[target]))
-      continue;
-
-    count++;
-  }
-
-  const sortedTargetIndex = start + count;
-  switchArrayPositions(array, target, sortedTargetIndex);
-  return sortedTargetIndex;
-};
-
-const moveItemsByTarget = (
+const partition = (
   order: "asc" | "desc",
   array: any[],
   start: number,
-  end: number,
-  target: number
+  end: number
 ) => {
-  const compare = order === "asc" ? lessThan : greaterThan;
+  const compare = order === "asc" ? lessOrEqualThan : greaterOrEqualThan;
 
-  for (
-    let current = start, destination = start;
-    current <= end && destination < target;
-    current++
-  ) {
-    if (equalTo(current, target) || !compare(array[current], array[target]))
-      continue;
+  const pivot = end;
+  let destination = start;
 
-    switchArrayPositions(array, current, destination);
-    destination++;
+  for (let current = start; current <= end; current++) {
+    if (current === pivot) continue;
+    if (compare(array[current], array[pivot])) {
+      switchArrayPositions(array, current, destination);
+      destination++;
+    }
   }
 
-  return array;
+  switchArrayPositions(array, destination, pivot);
+
+  return destination;
 };
 
 export function quickSort<T>(
@@ -69,15 +38,11 @@ export function quickSort<T>(
   start = 0,
   end = array.length - 1
 ): T[] {
-  if (end - start < 1) return array;
+  if (start >= end) return array;
 
-  const targetIndex = Math.floor((start + end) / 2),
-    sortedTargetIndex = sortTarget(order, array, start, end, targetIndex);
-
-  moveItemsByTarget(order, array, start, end, sortedTargetIndex);
-
-  quickSort(array, order, start, sortedTargetIndex - 1);
-  quickSort(array, order, sortedTargetIndex + 1, end);
+  const pivotIndex = partition(order, array, start, end);
+  quickSort(array, order, start, pivotIndex - 1);
+  quickSort(array, order, pivotIndex + 1, end);
 
   return array;
 }
