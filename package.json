@@ -4,6 +4,7 @@
   "scripts": {
     "test": "vitest run",
     "test:sort": "vitest run sort.test.ts --reporter verbose",
+    "test:binary-search": "vitest run binary-search.test.ts --reporter verbose",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
