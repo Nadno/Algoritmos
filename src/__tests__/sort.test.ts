@@ -60,15 +60,15 @@ for (const sortMethod in sortMethods) {
         staticSortedNumbers
       );
 
-      expect(sort([...sortedNumbers], "desc")).toEqual(
+      expect(sort([...sortedNumbers].reverse(), "desc")).toEqual(
         [...sortedNumbers].reverse()
       );
 
-      expect(sort([...sortedStrings], "desc")).toEqual(
+      expect(sort([...sortedStrings].reverse(), "desc")).toEqual(
         [...sortedStrings].reverse()
       );
 
-      expect(sort([...staticSortedNumbers], "desc")).toEqual(
+      expect(sort([...staticSortedNumbers].reverse(), "desc")).toEqual(
         [...staticSortedNumbers].reverse()
       );
     });
