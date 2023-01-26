@@ -85,6 +85,22 @@ for (const sortMethod in sortMethods) {
       );
     });
 
+    it("should sort a few items in any order", () => {
+      for (let totalItems = 1; totalItems <= 5; totalItems++) {
+        const randomNumbers = Array.from({ length: totalItems }, () =>
+            Math.floor(Math.random() * totalItems)
+          ),
+          sortedRandomNumbers = [...randomNumbers].sort(
+            ascendingSortComparator
+          );
+
+        expect(sort([...randomNumbers])).toEqual(sortedRandomNumbers);
+        expect(sort([...randomNumbers], "desc")).toEqual(
+          [...sortedRandomNumbers].reverse()
+        );
+      }
+    });
+
     it("should compare the items order", () => {
       const randomNumbers = Array.from({ length: 500 }, () =>
         Math.floor(Math.random() * 500)
